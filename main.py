@@ -435,8 +435,8 @@ def test(dataset, save=False):
         df_piece = pd.DataFrame(
             list(zip(pred_groups_str, pred_pieces_str, ids)),
             columns=['群組', '工件', '熱偶線'])
-        df_group.to_csv('109043_projectB_group.csv', index=False)
-        df_piece.to_csv('109043_projectB_all.csv', index=False)
+        df_group.to_csv('xxxxxx_projectB_group.csv', index=False)
+        df_piece.to_csv('xxxxxx_projectB_all.csv', index=False)
 
 
 if __name__ == '__main__':
