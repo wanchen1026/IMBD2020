@@ -93,31 +93,6 @@ class FinalDataset(GeneralDataset):
         super().__init__(paths)
 
 
-# class TestDataset(Dataset):
-#     def __init__(self, path=Test_csv_path):
-#         df = pd.read_csv(path, header=None).T
-#         df = df.fillna(value=0, inplace=True)
-#         for col in df.columns:
-#             if type(col) == int and col > 0:
-#                 df[col] = df[col].astype('float')
-#         self.ids = df.iloc[:, 0].values
-#         self.datas = df.iloc[:, 1:].values
-#         if self.datas.shape[1] > 24:
-#             self.datas = self.datas[:, :24]
-#         else:
-#             pad_len = 24 - self.datas.shape[1]
-#             self.datas = np.pad(self.datas, [(0, 0), (0, pad_len)])
-#         self.datas = self.datas.astype(np.float32)
-
-#     def __len__(self):
-#         return len(self.datas)
-
-#     def __getitem__(self, idx):
-#         front = self.datas[idx, None]
-#         zeros = np.zeros((1, 300), dtype=np.float32)
-#         return front, zeros, 0, 0
-
-
 class TestDataset(Dataset):
     def __init__(self, path=Test_csv_path):
         df = pd.read_csv(path, header=None).T
@@ -214,14 +189,6 @@ class ExpAverage:
             ema.append(now)
         ema = np.array(ema)[None].astype(np.float32)
         data = np.concatenate([data, ema], axis=0)
-        return data
-
-
-class FFT:
-    def __call__(self, data):
-        data = data.T
-        data = torch.cat([data, torch.zeros_like(data)], dim=1)
-        data = torch.fft(data, signal_ndim=1, normalized=True)
         return data
 
 
