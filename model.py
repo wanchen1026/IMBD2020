@@ -109,20 +109,3 @@ class PieceClassifier(nn.Module):
         outputs = self.classifier(inputs)
         outputs = torch.flatten(outputs, 1)
         return outputs
-
-
-class Classifier(nn.Module):
-    def __init__(self, num_classes, in_dim, dropout=0.):
-        super(Classifier, self).__init__()
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout),
-            nn.Linear(in_dim, in_dim),
-            nn.ReLU(),
-            nn.Dropout(dropout),
-            nn.Linear(in_dim, num_classes),
-        )
-
-    def forward(self, inputs):
-        outputs = self.classifier(inputs)
-        outputs = torch.flatten(outputs, 1)
-        return outputs
